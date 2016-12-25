@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="sendclass.page.WorkbenchPreferencePage1"
+            id="SendClass.page1"
+            name="Send Class">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="sendclass.SendClassCommand"
+               label="Send Class"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="sendclass.SendClassCommand"
+            name="SendClassCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="sendclass.handler.SendClassHandler"
+            commandId="sendclass.SendClassCommand">
+         <enabledWhen>
+            <iterate>
+               <adapt
+                     type="org.eclipse.core.resources.IResource">
+               </adapt>
+               <not>
+                  <adapt
+                        type="org.eclipse.core.internal.resources.Project">
+                  </adapt>
+               </not>
+            </iterate>
+         </enabledWhen>
+      </handler>
+   </extension>
+
+</plugin>
